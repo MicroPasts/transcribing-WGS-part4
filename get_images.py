@@ -44,7 +44,7 @@ def get_s3_photos(folder):
     for photo in rs:
         if allowed_file(photo.name.lower()):
             link = dict(
-                url_b=photo.name
+                url_b="http://" + s3_settings.BUCKET + ".s3.amazonaws.com/" + photo.name
             )
             print(link)
             photos.append(link)
