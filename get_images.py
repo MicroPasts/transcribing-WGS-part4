@@ -46,6 +46,7 @@ def get_s3_photos(folder):
             link = dict(
                 url_b=photo.name
             )
+            print(link)
             photos.append(link)
 
     return photos
