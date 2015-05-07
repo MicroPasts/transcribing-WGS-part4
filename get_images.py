@@ -38,12 +38,13 @@ def get_s3_photos(folder):
 
     """
     conn = S3Connection(s3_settings.ACCESS_KEY, s3_settings.SECRET)
-    mybucket = conn.get_bucket(s3_settings.BUCKET)
+    bucket = conn.get_bucket(s3_settings.BUCKET)
+    rs = bucket.list(s3_settings.FOLDER)
     photos = []
-    for photo in mybucket.list():
+    for photo in rs:
         if allowed_file(photo.name.lower()):
             link = dict(
-                url_b="http://%s.s3.amazonaws.com/%s/%s" % (s3_settings.BUCKET, s3_settings.FOLDER, photo.name)
+                url_b=photo.name
             )
             photos.append(link)
 
